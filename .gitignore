@@ -1,0 +1,12 @@
+a.out
+*.gch
+*.swp
+*.aux
+*.toc
+*.synctex.gz
+*.out
+*.log
+*.fls
+*.fdb_latexmk
+*.vscode
+*.exe
