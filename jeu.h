@@ -15,6 +15,7 @@ void liberGrille (int ** g );
 int caseVide ( int **g , int i , int j);
 int nbCaseVide ( int **g );
 int ajouterTuile (int ** g ) ;
+void initJeu(int **g, int *score);
 
 
 

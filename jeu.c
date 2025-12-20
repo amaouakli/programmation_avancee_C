@@ -91,3 +91,65 @@ int ajouterTuile (int ** g ){             // ajouter une tuile selon rand
     }
     return 0 ;
 }
+
+
+
+void initJeu(int **g, int *score) {   // initialiser le plateau et deux cases 
+    initGrille(g);
+    ajouterTuile(g);
+    ajouterTuile(g);
+    *score = 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+int main (){
+
+    int ** mat = createGrille();
+    initGrille(mat);
+    
+
+    // affichage pour l'instant  
+    for( int i = 0 ; i < 4 ; i ++ ) {
+        for( int j = 0 ; j < 4 ; j ++){
+            printf("%d ",mat[i][j]);
+        }
+        printf("\n");
+    }
+
+
+
+
+    liberGrille(mat);
+    return 0 ;
+}
