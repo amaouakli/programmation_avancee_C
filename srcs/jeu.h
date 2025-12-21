@@ -1,4 +1,3 @@
-
 #ifndef JEU_H
 #define JEU_H
 
@@ -6,6 +5,7 @@
 #include <stdio.h>
 #include<stdlib.h>
 #include<errno.h>
+#include<unistd.h>
 #include <time.h>
 #define TAILLE 4 
 #define AVOIRQ 15
@@ -26,6 +26,10 @@ int enBas(int **g , int *score);
 int deplacer(int **g);
 int estTermine(int **g);
 int gagner(int **g) ;
+int	saveStateToFile(char *fileName, int **g);
+char *ft_strjoin(char *s1, char *s2);
+size_t ft_strlen(const char *a);
+char *ft_itoa(int n);
 
 
 #endif

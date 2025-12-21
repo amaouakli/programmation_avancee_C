@@ -1,4 +1,6 @@
 a.out
+2048
+*.o
 *.gch
 *.swp
 *.aux
