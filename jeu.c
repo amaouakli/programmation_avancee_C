@@ -102,27 +102,75 @@ void initJeu(int **g, int *score) {   // initialiser le plateau et deux cases
 }
 
 
+// on ecrit le cas ou c'est a gauche ici 
+
+int calcul(int ligne[TAILLE] , int *score) {   // le calule d'un resultat d'un movement 
+    int res = 0;
+    for (int j = 0 ; j < TAILLE - 1 ; j++) {     
+        for (int i = 0 ; i < TAILLE - 1 ; i++) {
+            if ( ligne[i] == 0 && ligne[i+1] != 0) { // on echange les elements si l'un est 0 et le suivant est ! nul
+                ligne[i] = ligne[i+1] ;
+                ligne[i+1] = 0;
+                res = 1;
+            }
+        }
+    }
+    for (int i = 0 ; i < TAILLE - 1 ; i++) {    // on multiplie les element adjacents = 
+        if ( ligne[i] != 0 && ligne[i] == ligne[i+1]) {
+            ligne[i] = ligne[i] * 2;
+            *score = *score + ligne[i];
+            ligne[i+1] = 0;
+            res = 1 ;
+        }
+    }
+    
+    for (int j = 0 ; j < TAILLE - 1 ; j++) {    // on echange si ya des 0 
+        for (int i = 0 ; i < TAILLE - 1 ; i++) {
+            if (ligne[i] == 0 && ligne[i+1] != 0) {
+
+                ligne[i] = ligne[i+1] ;
+                ligne[i+1] = 0;
+                res= 1 ;
+            }
+        }
+    }
+    
+    return res;
+}
 
 
 
+void inverserLigne ( int  ligne [TAILLE]){   // fonction qui inverse une ligne 
 
+    for( int i = 0 ; i < TAILLE / 2 ;i ++ ){
+        int temp = ligne[i];
+        ligne[i] = ligne[ TAILLE - 1 - i];
+        ligne[TAILLE - 1 - i ] = temp;
+    }
 
+    return ;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ 
+int movGauche(int **g , int *score) {    // extraire uen ligne a la fois et appeler calucl puis recopier 
+    int res= 0;
+    int temp[TAILLE];
+    
+    for (int i = 0 ; i < TAILLE ; i++) {
+        for (int j = 0 ; j < TAILLE ; j++) {
+            temp[j] = g[i][j];
+        }
+        
+        if (calcul(temp , score)) {
+            res = 1;
+            
+            for (int j = 0 ; j < TAILLE ; j++) {
+                g[i][j] = temp[j];
+            }
+        }
+    }
+    return res;
+}
 
 
 
@@ -146,7 +194,7 @@ int main (){
         }
         printf("\n");
     }
-
+    
 
 
 
