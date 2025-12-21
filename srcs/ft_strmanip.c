@@ -39,3 +39,17 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (ret);
 }
 
+void	ft_str_replace(char *st, char bef, char aft)
+{
+	size_t ln;
+	int		i;
+
+	i = 0;
+	ln = ft_strlen(st);
+	while(i < ln)
+	{
+		if (st[i] == bef)
+			st[i] = aft;
+		i++;
+	}
+}

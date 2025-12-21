@@ -9,16 +9,16 @@ int main (){
 
     int ** mat = createGrille();
     initGrille(mat);
-    
+	char *saveFile;
 
-    // affichage pour l'instant  
-    for( int i = 0 ; i < 4 ; i ++ ) {
-        for( int j = 0 ; j < 4 ; j ++){
-            printf("%d ",mat[i][j]);
-        }
-        printf("\n");
-    }
-    
+	saveFile = initSaveFile();
+	printf("%s\n", saveFile);
+	saveStateToFile(saveFile, mat);
+	saveStateToFile(saveFile, mat);
+	saveStateToFile(saveFile, mat);
+	mat[0][0] = 2048;
+	mat[0][1] = 2;
+	affichageGrille(mat);
 
 
 

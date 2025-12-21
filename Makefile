@@ -9,7 +9,8 @@ SRC = main.c\
 	   interaction.c\
 	   jeu.c\
 	   ft_itoa.c\
-	   ft_strmanip.c
+	   ft_strmanip.c\
+	   affichage.c
 
 SRCS_DIR = srcs/
 
@@ -36,6 +37,9 @@ all: ${NAME}
 ${NAME}: ${OBJS}
 	@echo "${GREEN}project compiled${NOC}"
 	@${CC} ${OBJS} -o ${NAME}
+
+run: ${NAME}
+	./${NAME}
 
 resetsavefiles:
 	@echo "${RED}removing all savefiles${NOC}"

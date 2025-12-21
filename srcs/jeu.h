@@ -30,6 +30,9 @@ int	saveStateToFile(char *fileName, int **g);
 char *ft_strjoin(char *s1, char *s2);
 size_t ft_strlen(const char *a);
 char *ft_itoa(int n);
+void ft_str_replace(char *st, char bef, char aft);
+char *initSaveFile();
+void affichageGrille(int **g);
 
 
 #endif

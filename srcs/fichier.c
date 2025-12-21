@@ -5,30 +5,47 @@ int	saveStateToFile(char *fileName, int **g)
 	FILE	*fd;
 	int		i;
 
-	fd = fopen(ft_strjoin("../savefiles/\0", fileName), "a");
+	fd = fopen(ft_strjoin("savefiles/", fileName), "a");
 	if (!fd)
 		return (-1);
+	i = 0;
 	while (i < (TAILLE * TAILLE))
 	{
 		fprintf(fd, "%d", g[i / TAILLE][i % TAILLE]);
-		printf("%d", g[i / TAILLE][i % TAILLE]);
-
 		if (i < (TAILLE * TAILLE - 1))
-		{
 			fprintf(fd, "-");
-			printf("-");
-		}
 		else 
-		{
 			fprintf(fd, "$\n");
-			printf("$\n");
-		}
 		i++;
 	}
 	fclose(fd); 
 	return (1);
 }
 
+char *initSaveFile()
+{
+    time_t tm;
+	char *date__;
+	char *ret;
+
+	tm = time(NULL);
+	date__ = ctime(& tm);
+	ft_str_replace(date__, ' ', '_');
+	ft_str_replace(date__, '\n', '\0');
+	ret = ft_strjoin(date__, ".txt");
+	return (ret);
+}
+
+
+
+int replayGame(char *fileName)
+{
+	FILE *fd;
+
+	fd = fopen(fileName, "r");
+
+	fclose(fd);
+}
 
 /*
 int main()
