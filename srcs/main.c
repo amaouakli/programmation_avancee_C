@@ -1,8 +1,4 @@
-
-
 #include "jeu.h"
-#include "fichier.h"
-#include "interaction.h"
 
 
 
