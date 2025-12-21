@@ -20,11 +20,12 @@ void initJeu(int **g, int *score);
 int calcul(int ligne[TAILLE], int *score) ;
 void inverserLigne ( int  ligne [TAILLE]);
 int movGauche(int **g , int *score) ;
-
-
-
-
-
+int movDroite(int **g, int *score);
+int enHaut(int **g, int *score);
+int enBas(int **g , int *score);
+int deplacer(int **g);
+int estTermine(int **g);
+int gagner(int **g) ;
 
 
 #endif
