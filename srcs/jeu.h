@@ -27,7 +27,7 @@ int enBas(int **g , int *score);
 int deplacer(int **g);
 int estTermine(int **g);
 int gagner(int **g) ;
-int	saveStateToFile(char *fileName, int **g);
+int	saveStateToFile(char *fileName, int **g, int score);
 char *ft_strjoin(char *s1, char *s2);
 size_t ft_strlen(const char *a);
 char *ft_itoa(int n);
@@ -38,6 +38,7 @@ int replayGame(char *fileName);
 int ft_atoi(const char *nprt);
 char *ft_strappend(char *str, char ap);
 void outputLine(char *line);
+int	**recupGrilleEnCours(char *fileName, int *score);
 
 
 #endif

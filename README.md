@@ -10,8 +10,11 @@ Le Makefile fonctionne ainsi :
 
 Les sauvegardes du jeu sont enregistrées dans le dossier savefiles/ :  
 	La regle 'make resetsavefiles' permet de supprimer les fichiers du dossier.  
+	Pour reprendre une partie en cours, il faut lancer l'executable '2048' suivi du chemin vers le fichier de sauvegarde.  
+	Exemple : './2048 savefiles/Mon_Dec_22_15:59:55_2025.txt'
 
 ### Replay Mode
 Le replay_mode est disponible avec la commande 'make replay' :  
+	Il permet de revoir le deroulement d'une partie.
 	Cela compile et donne un exectutable 'replay_mode' qu'il suffit d'executer avec le chemin vers un fichier de sauvegarde.  
 	Exemple : './replay_mode savefiles/Mon_Dec_22_15:31:02_2025.txt'.  

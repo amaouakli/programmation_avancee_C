@@ -7,12 +7,23 @@ int main(int argc, char **argv)
     char clique;
     int move = 0;
     char *saveFile;
+	char mode;
 
     srand(time(NULL));
     initJeu(g, &score);
     
-    
-    saveFile = initSaveFile(); 
+    if (argc == 2)
+	{
+		saveFile = argv[1];
+		score = 0;
+		g = recupGrilleEnCours(saveFile, & score);
+		mode = 'c';
+	}
+	else
+	{
+    	saveFile = initSaveFile(); 
+		mode = 'n';
+	}
 	printf("\033[H\033[J");
 
     while (1) 
@@ -45,17 +56,22 @@ int main(int argc, char **argv)
         if (move) 
         {
             ajouterTuile(g);
-            saveStateToFile(saveFile, g);
+            saveStateToFile(saveFile, g, score);
         }
     }
     printf("Fin de partie: %s\n", saveFile);
 	printf("Voulez-vous revoir la partie ? (y/n)\n");
 	scanf(" %c", &clique);
-	if (clique == 'y')
-		replayGame(ft_strjoin("savefiles/", saveFile));
-    free(saveFile);
+	if (mode == 'c')
+		if (clique == 'y')
+			replayGame(saveFile);
+	if (mode == 'n')
+	{
+		if (clique == 'y')
+			replayGame(ft_strjoin("savefiles/", saveFile));
+    	free(saveFile);
+	}
     liberGrille(g);
-    
     return 0;
 }
 

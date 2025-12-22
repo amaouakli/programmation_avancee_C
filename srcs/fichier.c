@@ -1,6 +1,6 @@
 #include"jeu.h"
 
-int	saveStateToFile(char *fileName, int **g)
+int	saveStateToFile(char *fileName, int **g, int score)
 {
 	FILE	*fd;
 	int		i;
@@ -15,7 +15,7 @@ int	saveStateToFile(char *fileName, int **g)
 		if (i < (TAILLE * TAILLE - 1))
 			fprintf(fd, ":");
 		else 
-			fprintf(fd, "$\n");
+			fprintf(fd, "$%d;\n", score);
 		i++;
 	}
 	fclose(fd); 
@@ -36,7 +36,6 @@ char *initSaveFile()
 	return (ret);
 }
 
-
 void outputLine(char *line)
 {
 	int		i;
@@ -49,7 +48,6 @@ void outputLine(char *line)
 	initGrille(g);
 	while (line[i] != '$')
 	{
-		//printf("atoi : %d || nb_empl : %d || i : %d\n", ft_atoi(& line[i]), nb_empl, i);
 		if (i > 0)
 			i++;
 		g[nb_empl / TAILLE][nb_empl % TAILLE] = ft_atoi(& line[i]);
@@ -60,7 +58,6 @@ void outputLine(char *line)
 	affichageGrille(g);
 }
 
-
 int replayGame(char *fileName)
 {
 	FILE *fd;
@@ -70,7 +67,7 @@ int replayGame(char *fileName)
 	fd = fopen(fileName, "r");
 	if (!fd)
 	{
-		printf("could not open file\n");
+		printf("could not open file heheheh\n");
 		return (-1);
 	}
 	cr = fgetc(fd);
@@ -81,7 +78,7 @@ int replayGame(char *fileName)
 	while (cr != EOF)
 	{
 		line = ft_strappend(line, cr);
-		if (cr == '$')
+		if (cr == ';')
 		{
 			outputLine(line);
 			free(line);
@@ -95,16 +92,59 @@ int replayGame(char *fileName)
 	return (1);
 }
 
-/*
-int main()
+int **lineToGrille(char *line, int *score)
 {
-	int **g;
+	int		i;
+	int		nb_empl;
+	int		**g;
 
+	i = 0;
+	nb_empl = 0;
 	g = createGrille();
 	initGrille(g);
-	saveStateToFile("fileTest1", g);
-
-	return (0);
+	while (line[i] != '$')
+	{
+		if (i > 0)
+			i++;
+		g[nb_empl / TAILLE][nb_empl % TAILLE] = ft_atoi(& line[i]);
+		nb_empl++;
+		while (line[i] != ':' && line[i] != '$')
+			i++;
+	}
+	*score = ft_atoi(& line[i + 1]);
+	return (g);
 }
-*/
-// fonctions de chargement 
+int	**recupGrilleEnCours(char *fileName, int *score)
+{
+	FILE *fd;
+	char cr;
+	char *line;
+	int	**grille;
+
+	fd = fopen(fileName, "r");
+	if (!fd)
+	{
+		printf("could not open file\n");
+		return (NULL);
+	}
+	cr = fgetc(fd);
+	line = malloc(sizeof(char *) * 1);
+	if (!line)
+		return (NULL);
+	line = "\0";
+	while (cr != EOF)
+	{
+		line = ft_strappend(line, cr);
+		if (cr == ';')
+		{
+			grille = lineToGrille(line, score);
+			free(line);
+			line = malloc(sizeof(char *) * 1);
+			line = "\0";
+		}
+		cr = fgetc(fd);
+	}
+	free(line);
+	fclose(fd);
+	return (grille);
+}

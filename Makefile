@@ -67,6 +67,7 @@ resetsavefiles:
 clean:
 	@echo "${YELLOW}removing all .o and precompiled headers${NOC}"
 	rm -f ${OBJS}
+	rm -f ${REPLAY_OBJS}
 	rm -f ${SRCS_DIR}*.h.gch
 
 fclean: clean

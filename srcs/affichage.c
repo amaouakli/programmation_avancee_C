@@ -2,7 +2,19 @@
 
 static int tailleInt(int n)
 {
-	return ((n / 10) + 2);
+	int	taille;
+
+	taille = 0;
+	if (n == 0)
+		return (1);
+	if (n < 0)
+		n = -n;
+	while (n > 0)
+	{
+		n = (n / 10);
+		taille++;
+	}
+	return (taille);
 }
 
 
@@ -12,7 +24,7 @@ void	affichageGrille(int **g)
 	int	j;
 
 	i = 0;
-	while (i < (TAILLE * 5) + 1)
+	while (i < (TAILLE * 6) + 1)
 	{
 		printf("-");
 		i++;
@@ -34,7 +46,7 @@ void	affichageGrille(int **g)
 		i++;
 	}
 	i = 0;
-	while (i < (TAILLE * 5) + 1)
+	while (i < (TAILLE * 6) + 1)
 	{
 		printf("-");
 		i++;
