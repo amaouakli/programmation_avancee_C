@@ -1,7 +1,5 @@
 #include "jeu.h"
 
-
-
 int main(int argc, char **argv)
 {
     int **g = createGrille();
@@ -16,6 +14,7 @@ int main(int argc, char **argv)
     
     saveFile = initSaveFile(); 
 	printf("\033[H\033[J");
+
     while (1) 
     {
         printf("Score : %d\n", score);
@@ -50,6 +49,10 @@ int main(int argc, char **argv)
         }
     }
     printf("Fin de partie: %s\n", saveFile);
+	printf("Voulez-vous revoir la partie ? (y/n)\n");
+	scanf(" %c", &clique);
+	if (clique == 'y')
+		replayGame(ft_strjoin("savefiles/", saveFile));
     free(saveFile);
     liberGrille(g);
     

@@ -1,8 +1,9 @@
 
-
 CC = gcc 
 
 NAME = 2048
+
+NAME_REPLAY = replay_mode
 
 SRC = main.c\
 	   fichier.c\
@@ -12,11 +13,23 @@ SRC = main.c\
 	   ft_strmanip.c\
 	   affichage.c
 
+REPLAY_SRC = replay_main.c\
+			 fichier.c\
+			 interaction.c\
+			 jeu.c\
+			 ft_itoa.c\
+			 ft_strmanip.c\
+			 affichage.c
+
 SRCS_DIR = srcs/
 
 SRCS = $(addprefix ${SRCS_DIR}, ${SRC})
 
+REPLAY_SRCS = $(addprefix ${SRCS_DIR}, ${REPLAY_SRC})
+
 OBJS = ${SRCS:.c=.o}
+
+REPLAY_OBJS = ${REPLAY_SRCS:.c=.o}
 
 
 
@@ -41,6 +54,12 @@ ${NAME}: ${OBJS}
 run: ${NAME}
 	./${NAME}
 
+${NAME_REPLAY}: ${REPLAY_OBJS}
+	@echo "${BLUE}replay mode compiled${NOC}"
+	@${CC} ${REPLAY_OBJS} -o ${NAME_REPLAY}
+
+replay: ${NAME_REPLAY}
+
 resetsavefiles:
 	@echo "${RED}removing all savefiles${NOC}"
 	rm -f savefiles/*
@@ -53,6 +72,7 @@ clean:
 fclean: clean
 	@echo "${YELLOW}removing output${NOC}"
 	rm -f ${NAME}
+	rm -f ${NAME_REPLAY}
 
 re: fclean all
 

@@ -47,16 +47,15 @@ void outputLine(char *line)
 	nb_empl = 0;
 	g = createGrille();
 	initGrille(g);
-	affichageGrille(g);
 	while (line[i] != '$')
 	{
-		g[nb_empl / TAILLE][nb_empl % TAILLE] = atoi(& line[i]); 															//TODO
+		//printf("atoi : %d || nb_empl : %d || i : %d\n", ft_atoi(& line[i]), nb_empl, i);
+		if (i > 0)
+			i++;
+		g[nb_empl / TAILLE][nb_empl % TAILLE] = ft_atoi(& line[i]);
 		nb_empl++;
 		while (line[i] != ':' && line[i] != '$')
-		{
 			i++;
-			printf("once\n");
-		}
 	}
 	affichageGrille(g);
 }
@@ -70,7 +69,10 @@ int replayGame(char *fileName)
 
 	fd = fopen(fileName, "r");
 	if (!fd)
+	{
+		printf("could not open file\n");
 		return (-1);
+	}
 	cr = fgetc(fd);
 	line = malloc(sizeof(char *) * 1);
 	if (!line)
