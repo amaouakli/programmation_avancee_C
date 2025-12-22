@@ -1,6 +1,6 @@
 #include "jeu.h"
 
-static int	ft_taille(long int n)
+static int	ft_taille(long int n) 
 {
 	int	taille;
 
@@ -17,7 +17,7 @@ static int	ft_taille(long int n)
 	return (taille);
 }
 
-static void	fill(char *ret, long int n, int taille)
+static void	fill(char *ret, long int n, int taille) 
 {
 	int	i;
 

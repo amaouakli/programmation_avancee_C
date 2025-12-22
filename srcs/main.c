@@ -1,8 +1,8 @@
 #include "jeu.h"
 
-int main(int argc, char **argv)
+int main(int argc, char **argv) 
 {
-    int **g = createGrille();
+    int **g = createGrille(); // initialisations 
     int score = 0;
     char clique;
     int move = 0;
@@ -10,37 +10,37 @@ int main(int argc, char **argv)
 	char mode;
 
     srand(time(NULL));
-    initJeu(g, &score);
+    initJeu(g, &score);  // Préparation de la grille initiale
     
-    if (argc == 2)
+    if (argc == 2) // on charge une sauvegarde passée en argument
 	{
 		saveFile = argv[1];
 		score = 0;
 		g = recupGrilleEnCours(saveFile, & score);
-		mode = 'c';
+		mode = 'c'; // c pour continuer
 	}
 	else
 	{
     	saveFile = initSaveFile(); 
-		mode = 'n';
+		mode = 'n'; // n pour nouveau 
 	}
-	printf("\033[H\033[J");
+	printf("\033[H\033[J"); // nettoyage du terminal
 
     while (1) 
     {
         printf("Score : %d\n", score);
         affichageGrille(g);
 
-        if (gagner(g)) {
+        if (gagner(g)) {   // verification des conditions de victoire ou de défaite
             printf("Félicitations!\n");
             break;
         }
         if (estTermine(g)) {
-            printf("C'est mal passé hehe  dommage \n");
+            printf("C'est fini \n");
             break;
         }
 
-        printf("Tapez (g:gauche, d:droite, h:haut, b:bas, q:Quitter): ");
+        printf("Tapez (g:gauche, d:droite, h:haut, b:bas, q:Quitter): "); // Lecture de l'action utilisateur
         if (scanf(" %c", &clique) != 1) break;
         move = 0;
         if (clique == 'g' || clique == 'G')
