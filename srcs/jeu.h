@@ -9,7 +9,7 @@
 #include <time.h>
 #include<string.h>
 #define TAILLE 4 
-#define AVOIRQ 15
+#define AVOIRQ 10
 
 int ** createGrille (); 
 void initGrille ( int ** g );
