@@ -45,11 +45,10 @@ void initGrille ( int ** g ){   // initialisation de la grille avec des 0
 
 
 int caseVide ( int **g , int i , int j) {   // renvoie 0  si la case est vide sinon 1 
-    int res = 1;
     if ( g[i][j] == 0 ) {
-        res = 0 ;
+        return 1 ;
     }  
-    return res ;
+    return 0 ;
 }
 
 

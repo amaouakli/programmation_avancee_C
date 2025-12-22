@@ -2,30 +2,57 @@
 
 
 
-
-
-
-int main (int argc, char **argv)
+int main(int argc, char **argv)
 {
+    int **g = createGrille();
+    int score = 0;
+    char clique;
+    int move = 0;
+    char *saveFile;
 
-    int ** mat = createGrille();
-    initGrille(mat);
-	char *saveFile;
+    srand(time(NULL));
+    initJeu(g, &score);
+    
+    
+    saveFile = initSaveFile(); 
+	printf("\033[H\033[J");
+    while (1) 
+    {
+        printf("Score : %d\n", score);
+        affichageGrille(g);
 
-	saveFile = initSaveFile();
-	printf("%s\n", saveFile);
-	saveStateToFile(saveFile, mat);
-	saveStateToFile(saveFile, mat);
-	saveStateToFile(saveFile, mat);
-	mat[0][0] = 2048;
-	mat[0][1] = 2;
-//	affichageGrille(mat);
-	//replayGame(argv[1]);
-	outputLine(argv[1]);
-	//printf("%d\n", atoi( & argv[1][4]));
+        if (gagner(g)) {
+            printf("Félicitations!\n");
+            break;
+        }
+        if (estTermine(g)) {
+            printf("C'est mal passé hehe  dommage \n");
+            break;
+        }
 
-
-
-    liberGrille(mat);
-    return 0 ;
+        printf("Tapez (g:gauche, d:droite, h:haut, b:bas, q:Quitter): ");
+        if (scanf(" %c", &clique) != 1) break;
+        move = 0;
+        if (clique == 'g' || clique == 'G')
+            move = movGauche(g, &score);
+        else if (clique == 'd' || clique == 'D')
+            move = movDroite(g, &score);
+        else if (clique == 'h' || clique == 'H')
+            move = enHaut(g, &score);
+        else if (clique == 'b' || clique == 'B')
+            move = enBas(g, &score);
+        else if (clique == 'q' || clique == 'Q')
+            break;
+        if (move) 
+        {
+            ajouterTuile(g);
+            saveStateToFile(saveFile, g);
+        }
+    }
+    printf("Fin de partie: %s\n", saveFile);
+    free(saveFile);
+    liberGrille(g);
+    
+    return 0;
 }
+
