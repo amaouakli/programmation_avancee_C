@@ -57,3 +57,31 @@ char	*ft_itoa(int n)
 	}
 	return (ret);
 }
+
+int	ft_atoi(const char *nprt)
+{
+	long int	compt;
+	int			signe;
+	int			i;
+	char		*str;
+
+	str = (char *)nprt;
+	signe = 1;
+	i = 0;
+	compt = 0;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			signe = -signe;
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		compt = compt * 10 + str[i] - '0';
+		i++;
+	}
+	compt = compt * signe;
+	return (compt);
+}

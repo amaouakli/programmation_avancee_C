@@ -5,7 +5,8 @@
 
 
 
-int main (){
+int main (int argc, char **argv)
+{
 
     int ** mat = createGrille();
     initGrille(mat);
@@ -18,7 +19,10 @@ int main (){
 	saveStateToFile(saveFile, mat);
 	mat[0][0] = 2048;
 	mat[0][1] = 2;
-	affichageGrille(mat);
+//	affichageGrille(mat);
+	//replayGame(argv[1]);
+	outputLine(argv[1]);
+	//printf("%d\n", atoi( & argv[1][4]));
 
 
 

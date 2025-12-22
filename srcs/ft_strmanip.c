@@ -14,6 +14,20 @@ size_t	ft_strlen(const char *a)
 	return ((size_t)i);
 }
 
+char	*ft_strappend(char *str, char ap)
+{
+	char	*ret;
+	size_t	len;
+	
+	len = ft_strlen(str);
+	ret = malloc(sizeof(*ret) * (len + 2));
+
+	strcpy(ret, str);
+	ret[len] = ap;
+	ret[len + 1] = '\0';
+	return (ret);
+}
+
 char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*ret;

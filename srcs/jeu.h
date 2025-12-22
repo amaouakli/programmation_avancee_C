@@ -7,6 +7,7 @@
 #include<errno.h>
 #include<unistd.h>
 #include <time.h>
+#include<string.h>
 #define TAILLE 4 
 #define AVOIRQ 15
 
@@ -33,6 +34,10 @@ char *ft_itoa(int n);
 void ft_str_replace(char *st, char bef, char aft);
 char *initSaveFile();
 void affichageGrille(int **g);
+int replayGame(char *fileName);
+int ft_atoi(const char *nprt);
+char *ft_strappend(char *str, char ap);
+void outputLine(char *line);
 
 
 #endif
